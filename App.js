@@ -10,7 +10,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {
   ApplicationProvider,
@@ -20,24 +20,29 @@ import {
 } from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
+import SplashScreen from 'react-native-splash-screen'
 
 /**
  * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)
  * https://akveo.github.io/eva-icons
  */
-
-export default () => (
-  <>
-    <IconRegistry icons={EvaIconsPack}/>
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <Layout style={styles.container}>
-        <Text style={styles.text} category='h1'>
-          Welcome to UI Kitten 😻
-        </Text>
-      </Layout>
-    </ApplicationProvider>
-  </>
-);
+const App = () =>{
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <Layout style={styles.container}>
+          <Text style={styles.text} category="h1">
+            GradSpace
+          </Text>
+        </Layout>
+      </ApplicationProvider>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -49,3 +54,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export default App;
